@@ -1,0 +1,13 @@
+solusi :
+- untuk kasus transaksi yang ada 2 dan di rekapitulasi hanya 1 yang benar adalah yg transaksi, maka solusinya adalah delete transaksi dan bikin ulang aja  untuk transaksi tersebut
+- untuk kasus yg QTY nol, sebenarnya tidak boleh terjadi QTY nol, maka semua transaksi telah di handle agar tidak terjadi Qty nol lagi
+	untuk memperbaiki kasus yg sudah terlanjur qty 0 maka jalankan  fixed-error.sql;
+
+
+select s.ship_num,s.ship_date from service_detail d, shipment s
+where amount <> (quantity*price-d.discount) and d.ship_id = s.ship_id
+--select * from shipment where ship_id = 2865
+union 
+select s.ship_num,s.ship_date from item_detail d, shipment s
+where amount <> (quantity*price-d.discount) and d.ship_id = s.ship_id;
+select * from shipment where ship_id = 2865;

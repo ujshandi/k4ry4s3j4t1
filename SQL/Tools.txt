@@ -1,0 +1,71 @@
+================== insert mutasi masuk otomatis========================
+-----memberi nilai awal stok 100 utk semua item
+
+declare get_item cursor local for
+	select item_id, isnull(price,0), dbo.get_stok_onhand(item_id)
+ 	from items
+
+declare @item_id bigint, @price money
+declare @stok real
+declare @quantity real
+declare @date datetime
+declare @itemBalanceId bigint
+declare @shipId bigint
+declare @amount money
+set @date = cast('2006-09-01' as datetime)
+begin transaction
+INSERT into shipment(ship_num,ship_type,ship_date,notes, user_insert, date_insert)
+values ('MM/09/06/0001','M',@date,'STOK OPNAME','heri',@date)
+select @shipid = ident_current('shipment')
+open get_item
+fetch next from get_item into @item_id, @price, @stok
+while @@fetch_status = 0 begin
+   if @stok < 100 begin
+	set @quantity = 100 - @stok
+	set @amount = @quantity * @price
+	exec dbo.save_to_item_balance @item_id, @date, @quantity, @price, 'D', @@item_balance_id = @itembalanceId output
+   	exec dbo.insert_to_item_detail @shipId, @date, @item_Id, @Quantity, @price, 'D', @itemBalanceId, 1, 'M', 0,
+	@amount, 0, '', 0
+   end
+  fetch next from get_item into @item_id, @price, @stok	   	  
+end
+close get_item
+deallocate get_item
+commit transaction
+  
+  
+  
+  ================Insert mutasi keluar otomatis=====
+  ----------------set stok = 0 utk semua item----------------------
+  
+declare get_item cursor local for
+	select item_id, isnull(price,0), isNull(dbo.get_stok_onhand(item_id),0)
+ 	from items
+
+declare @item_id bigint, @price money
+declare @stok real
+declare @quantity real
+declare @date datetime
+declare @itemBalanceId bigint
+declare @shipId bigint
+declare @amount money
+set @date = cast('2007-02-01' as datetime)
+begin transaction
+INSERT into shipment(ship_num,ship_type,ship_date,notes, user_insert, date_insert)
+values ('MK/02/07/0001','M',@date,'STOK OPNAME','heri',@date)
+select @shipid = ident_current('shipment')
+open get_item
+fetch next from get_item into @item_id, @price, @stok
+while @@fetch_status = 0 begin
+   if @stok > 0 begin
+	set @quantity = @stok
+	set @amount = @quantity * @price
+	exec dbo.save_to_item_balance_out @item_id, @date, @quantity, @price, 'C', @@item_balance_id = @itembalanceId output,@@balance_concerned = '', @@real_value= @amount
+   	exec dbo.insert_to_item_detail @shipId, @date, @item_Id, @Quantity, @price, 'C', @itemBalanceId, 1, 'K', 0,
+	@amount, 0, '', 0
+   end
+  fetch next from get_item into @item_id, @price, @stok	   	  
+end
+close get_item
+deallocate get_item
+commit transaction

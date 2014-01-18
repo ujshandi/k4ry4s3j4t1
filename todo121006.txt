@@ -1,0 +1,29 @@
+1.Buat database kosong dengan item harga beli dan jual  [belum]
+  Harga beli Spare Part -> 0.725 X dr Jual
+  09482-Busi/SparkPlug -> 0.8 X dr Jual
+  99999-Harga beli oli -> default =harga jual
+2.Nama cabang
+	ISM Pusat
+	ISM Tuparev
+	ISM Kedawung
+	ISM Palimanan
+	ISM Pabuaran
+	ISM Kuningan
+	ISM Jatiwangi
+	ISM Kadipaten
+	ISM Jatibarang 
+	ISM Tegal
+3.Transaksi Pending tidak bisa edit atau hapus part, tp nambah part atau jasa bisa.  [OK]
+4.Di terima barang ada tanggal kirim dan tgl.sampai  dan no.delivery  [OK, update database pd kurung kurawal
+  ===================upd dtbase==============
+  {	alter table shipment add tgl_kirim datetime;
+	alter table shipment add tgl_sampai datetime;
+	alter table shipment add delivery_num varchar(100);}
+===================upd dtbase==============	
+	
+	
+	
+5.Di nota retur tambahkan qtyretur,hargaretur, subtotal retur  [OK]
+6.Pendapatan mekanik ada tambahan kolom retur [ok, print-out belum]
+7.Edit nota service dan sales [nunggu konfirmasi]
+8.

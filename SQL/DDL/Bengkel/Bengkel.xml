@@ -1,0 +1,249 @@
+<TableName=Items>
+  <FieldName=Item_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Item_Code><DataType=String(20)>
+  <FieldName=Item_Type><DataType=String(1)>
+  <FieldName=Item_Name><DataType=String(150)>
+  <FieldName=Used_Unit><DataType=String(50)>
+  <FieldName=Purchase_Unit><DataType=String(50)>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Conversion><DataType=Float>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=User_Insert><DataType=String(20)>
+  <FieldName=User_Edit><DataType=String(20)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edit><DataType=DateTime>
+  <FieldName=Stok_Limit><DataType=Integer>
+  <FieldName=Rank><DataType=Integer>
+  <FieldName=Price_Purchase><DataType=Currency>
+
+<TableName=Item_Price>
+  <FieldName=Price_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Item_Id><DataType=Integer><Reference=Item_Id(0)>
+  <FieldName=Service_Id><DataType=Integer>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Disable_Date><DataType=DateTime>
+  <FieldName=Date_Insert><DataType=DateTime>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Item_Price_Purchase>
+  <FieldName=Price_Purchase_Id><DataType=Sequence><NotNull>
+  <FieldName=Item_Id><DataType=Integer><Reference=Item_Id(0)>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Disable_Date><DataType=DateTime>
+  <FieldName=Date_Insert><DataType=DateTime>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Warehouse>
+  <FieldName=Wh_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Wh_Code><DataType=String(10)>
+  <FieldName=Wh_Name><DataType=String(150)>
+  <FieldName=Is_Active><DataType=Boolean>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Insert><DataType=DateTime>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Services>
+  <FieldName=Service_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Service_Code><DataType=String(50)>
+  <FieldName=Service_Type><DataType=String(1)>
+  <FieldName=Service_Name><DataType=String(100)>
+  <FieldName=Price><DataType=Float>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=User_Insert><DataType=String(20)>
+  <FieldName=User_Edit><DataType=String(20)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Service_Package>
+  <FieldName=Pkg_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Service_Id><DataType=Integer><NotNull><Reference=Service_Id(1)>
+  <FieldName=Item_Id><DataType=Integer><NotNull><Reference=Item_Id(0)>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Quantity><DataType=Float>
+  <FieldName=Service_Parent><DataType=Integer>
+  <FieldName=Notes><DataType=String(100)>
+
+<TableName=Company_Profile>
+  <FieldName=Company_Name><DataType=String(50)>
+  <FieldName=Address><DataType=String(50)>
+  <FieldName=Telp1><DataType=String(50)>
+  <FieldName=Telp2><DataType=String(50)>
+  <FieldName=Fax><DataType=String(50)>
+  <FieldName=City><DataType=String(50)>
+  <FieldName=Branch><DataType=String(50)>
+  <FieldName=Info><DataType=String(500)>
+
+<TableName=Motor>
+  <FieldName=Motor_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Motor_Type><DataType=String(1)>
+  <FieldName=Motor_Code><DataType=String(10)>
+  <FieldName=Motor_Name><DataType=String(50)>
+  <FieldName=Motor_Year><DataType=Integer>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Persons>
+  <FieldName=Person_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Person_Code><DataType=String(20)>
+  <FieldName=Person_Type><DataType=String(1)>
+  <FieldName=Person_Name><DataType=String(50)>
+  <FieldName=Motor_Id><DataType=Integer><Reference=Motor_Id(0)>
+  <FieldName=Address><DataType=String(200)>
+  <FieldName=City><DataType=String(50)>
+  <FieldName=Postal_Code><DataType=String(10)>
+  <FieldName=Birth_Date><DataType=DateTime>
+  <FieldName=Id_Num><DataType=String(50)>
+  <FieldName=Phone1><DataType=String(20)>
+  <FieldName=Phone2><DataType=String(20)>
+  <FieldName=Phone3><DataType=String(20)>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(20)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edit><DataType=DateTime>
+  <FieldName=Mtr_Year><DataType=Integer>
+  <FieldName=Mtr_Rangka><DataType=String(50)>
+  <FieldName=Mtr_Mesin><DataType=String(50)>
+
+<TableName=Account>
+  <FieldName=Acc_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Acc_Type><DataType=String(1)>
+  <FieldName=Acc_Code><DataType=String(20)>
+  <FieldName=Acc_Name><DataType=String(150)>
+  <FieldName=Db_Cr_Type><DataType=String(1)>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edt><DataType=DateTime>
+
+<TableName=Shipment>
+  <FieldName=Ship_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Ship_Num><DataType=String(30)>
+  <FieldName=Ship_Type><DataType=String(1)>
+  <FieldName=Ship_Date><DataType=DateTime><NotNull>
+  <FieldName=Person_Id><DataType=Integer><Reference=Person_Id(0)>
+  <FieldName=Mekanik_Id><DataType=Integer><Reference=Person_Id(1)>
+  <FieldName=Notes><DataType=String(50)>
+  <FieldName=Subtotal><DataType=Currency>
+  <FieldName=Discount><DataType=Currency>
+  <FieldName=Ppn><DataType=Currency>
+  <FieldName=Total><DataType=Currency>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Insert><DataType=DateTime>
+  <FieldName=Date_Edit><DataType=DateTime>
+  <FieldName=Ship_Id_Used><DataType=Integer>
+  <FieldName=Wh_Id><DataType=Integer><Reference=Wh_Id(2)>
+  <FieldName=Wh_Id_Out><DataType=Integer>
+  <FieldName=Expr_Date><DataType=DateTime>
+  <FieldName=Is_Post><DataType=Boolean>
+  <FieldName=Ship_Service_Type><DataType=String(1)>
+  <FieldName=Down_Payment><DataType=Currency>
+  <FieldName=Tgl_Kirim><DataType=Date>
+  <FieldName=Tgl_Sampai><DataType=Date>
+  <FieldName=Delivery_Num><DataType=String(100)>
+
+<TableName=Service_Detail>
+  <FieldName=Service_Detail_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Ship_Id><DataType=Integer><NotNull><Reference=Ship_Id(0)>
+  <FieldName=Service_Id><DataType=Integer><NotNull><Reference=Service_Id(1)>
+  <FieldName=Quantity><DataType=Float>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Amount><DataType=Currency>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=Charges><DataType=Currency>
+  <FieldName=Discount><DataType=Float>
+  <FieldName=Service_Parent><DataType=Integer>
+  <FieldName=Is_Ksg><DataType=Boolean>
+
+<TableName=Item_Balance>
+  <FieldName=Item_Balance_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Item_Id><DataType=Integer><NotNull><Reference=Item_Id(0)>
+  <FieldName=Balance_Date><DataType=DateTime><NotNull>
+  <FieldName=Balance><DataType=Float>
+  <FieldName=Db_Balance><DataType=Float>
+  <FieldName=Cr_Balance><DataType=Float>
+  <FieldName=Price><DataType=Float>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Item_Detail>
+  <FieldName=Item_Detail_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Item_Balance_Id><DataType=Integer><NotNull><Reference=Item_Balance_Id(0)>
+  <FieldName=Quantity><DataType=Float>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Conversion><DataType=Float>
+  <FieldName=Amount><DataType=Currency>
+  <FieldName=Db_Cr_Type><DataType=String(1)>
+  <FieldName=Ship_Id><DataType=Integer><NotNull><Reference=Ship_Id(1)>
+  <FieldName=Discount><DataType=Float>
+  <FieldName=Service_Parent><DataType=Integer>
+  <FieldName=Item_ID><DataType=Integer>
+  <FieldName=Balance_In_Concerned><DataType=String(0)>
+  <FieldName=Real_Value><DataType=Currency>
+  <FieldName=Is_Ksg><DataType=Boolean>
+
+<TableName=Dummy_Item_Detail>
+  <FieldName=Dump_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Ship_Id><DataType=Integer><NotNull>
+  <FieldName=Item_Id><DataType=Integer><NotNull><Reference=Item_Id(0)>
+  <FieldName=Service_Id><DataType=Integer><Reference=Service_Id(1)>
+  <FieldName=Service_Parent><DataType=Integer>
+  <FieldName=Db_Cr_Type><DataType=String(1)>
+  <FieldName=Quantity><DataType=Float>
+  <FieldName=Price><DataType=Currency>
+  <FieldName=Discount><DataType=Currency>
+  <FieldName=Amount><DataType=Currency>
+  <FieldName=Is_Ksg><DataType=Boolean>
+
+<TableName=Payment>
+  <FieldName=Payment_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Payment_Type><DataType=String(1)><NotNull>
+  <FieldName=Payment_Date><DataType=DateTime><NotNull>
+  <FieldName=Payment_Num><DataType=String(30)><NotNull>
+  <FieldName=Subtotal><DataType=Currency>
+  <FieldName=Discount><DataType=Currency>
+  <FieldName=Ppn><DataType=Currency>
+  <FieldName=Charges><DataType=Currency>
+  <FieldName=Total><DataType=Currency>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=User_Insert><DataType=String(30)>
+  <FieldName=User_Edit><DataType=String(30)>
+  <FieldName=Date_Insert><DataType=DateTime><NotNull>
+  <FieldName=Date_Edit><DataType=DateTime>
+
+<TableName=Money_Account>
+  <FieldName=Money_Id><DataType=Integer><PrimaryKey>
+  <FieldName=Money_Code><DataType=String(10)><NotNull>
+  <FieldName=Money_Name><DataType=String(50)>
+  <FieldName=Money_Type><DataType=String(1)><NotNull>
+  <FieldName=Money_Owner><DataType=String(50)>
+  <FieldName=Acc_Num><DataType=String(50)>
+  <FieldName=Bank_Name><DataType=String(50)>
+  <FieldName=User_Id><DataType=String(20)><NotNull>
+  <FieldName=Date_Modify><DataType=DateTime><NotNull>
+
+<TableName=Money_Balance>
+  <FieldName=Money_Balance_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Money_Id><DataType=Integer><NotNull><Reference=Money_Id(0)>
+  <FieldName=Balance_Date><DataType=DateTime><NotNull>
+  <FieldName=Balance><DataType=Currency>
+  <FieldName=Db_Balance><DataType=Currency>
+  <FieldName=Cr_Balance><DataType=Currency>
+  <FieldName=Date_Modify><DataType=DateTime>
+
+<TableName=Money_Transaction>
+  <FieldName=Money_Trans_Id><DataType=Sequence><PrimaryKey>
+  <FieldName=Payment_Id><DataType=Integer><NotNull><Reference=Payment_Id(0)>
+  <FieldName=Money_Balance_Id><DataType=Integer><NotNull><Reference=Money_Balance_Id(1)>
+  <FieldName=Db_Cr_Type><DataType=String(1)><NotNull>
+  <FieldName=Amount><DataType=Currency>
+  <FieldName=Notes><DataType=String(200)>
+  <FieldName=Acc_Id><DataType=Integer><Reference=Acc_Id(2)>
+

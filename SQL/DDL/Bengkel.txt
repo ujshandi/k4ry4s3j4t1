@@ -1,0 +1,312 @@
+CREATE TABLE Items (
+	Item_Id AUTOINCREMENT NOT NULL ,
+	Item_Code VARCHAR (20)  ,
+	Item_Type CHAR (1)  ,
+	Item_Name VARCHAR (150)  ,
+	Used_Unit VARCHAR (50)  ,
+	Purchase_Unit VARCHAR (50)  ,
+	Price MONEY NULL ,
+	Conversion REAL NULL ,
+	Notes VARCHAR (200)  ,
+	User_Insert VARCHAR (20)  ,
+	User_Edit VARCHAR (20)  ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edit DATETIME NULL,
+	Stok_Limit INTEGER,
+	Rank Integer,
+	Price_Purchase MONEY,
+	CONSTRAINT I_PK PRIMARY KEY(Item_Id) 
+);
+
+CREATE TABLE Item_Price(
+	Price_Id AUTOINCREMENT NOT NULL ,
+	Item_Id LONGINT NULL ,
+	Service_Id LONGINT NULL ,
+	Price MONEY NULL ,
+	Disable_Date DATETIME NULL ,
+	Date_Insert DATETIME NULL ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT IP_PK PRIMARY KEY(Price_Id),
+	CONSTRAINT IP_I_PK FOREIGN KEY(Item_Id) REFERENCES Items(Item_Id),
+	CONSTRAINT S_IP_PK FOREIGN KEY(Service_Id) REFERENCES Services(Service_Id)      
+);  
+
+CREATE TABLE Item_Price_Purchase(
+	Price_Purchase_Id AUTOINCREMENT NOT NULL ,
+	Item_Id LONGINT NULL ,
+	Price MONEY NULL ,
+	Disable_Date DATETIME NULL ,
+	Date_Insert DATETIME NULL ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT IPP_PK PRIMARY KEY(Price_Id),
+	CONSTRAINT IPP_I_PK FOREIGN KEY(Item_Id) REFERENCES Items(Item_Id)
+);  
+
+CREATE TABLE Warehouse (
+	Wh_Id AUTOINCREMENT NOT NULL ,
+	Wh_Code VARCHAR (10)  ,
+	Wh_Name VARCHAR (150)  ,
+	Is_Active BOOLEAN ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Insert DATETIME NULL ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT WH PRIMARY KEY(Wh_Id) 
+);
+
+CREATE TABLE Services (
+	Service_Id AUTOINCREMENT,
+	Service_Code VARCHAR(50),
+	Service_Type CHAR(1)  ,
+	Service_Name VARCHAR(100),
+	Price REAL ,	
+	Notes VARCHAR(200),
+	User_Insert VARCHAR (20)  ,
+	User_Edit VARCHAR (20)  ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edit DATETIME NULL, 
+	CONSTRAINT S_PK PRIMARY KEY(Service_Id)
+);
+
+CREATE TABLE Service_Package (
+	Pkg_Id  AUTOINCREMENT ,
+	Service_Id INTEGER NOT NULL ,
+	Item_Id LONGINT NOT NULL ,
+	Price MONEY NULL ,
+	Quantity REAL NULL,
+	Service_Parent INTEGER,
+	Notes VARCHAR(100),
+	CONSTRAINT PKG_PK PRIMARY KEY(Pkg_Id),
+	CONSTRAINT PKG_ITEM_FK FOREIGN KEY(Item_Id) REFERENCES Items(Item_Id),
+	CONSTRAINT PKG_SERVICE_FK FOREIGN KEY(Service_Id) REFERENCES Services(Service_Id) 
+); 
+
+CREATE TABLE Company_Profile (
+	Company_Name VARCHAR (50)  ,
+	Address VARCHAR (50)  ,
+	Telp1 VARCHAR (50)  ,
+	Telp2 VARCHAR (50)  ,
+	Fax VARCHAR (50)  ,
+	City VARCHAR (50)  ,
+	Branch VARCHAR (50),
+	Info VARCHAR(500)  
+);
+
+CREATE TABLE Motor (
+	Motor_Id AUTOINCREMENT NOT NULL ,
+	Motor_Type CHAR (1)  ,
+	Motor_Code VARCHAR (10)  ,
+	Motor_Name VARCHAR (50)  ,
+	Motor_Year INTEGER,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT M_PK PRIMARY KEY(Motor_Id) 
+);
+
+CREATE TABLE Persons (
+	Person_Id AUTOINCREMENT NOT NULL ,
+	Person_Code VARCHAR (20)  ,
+	Person_Type CHAR (1)  ,
+	Person_Name VARCHAR (50)  ,
+	Motor_Id LONGINT NULL ,
+	Address VARCHAR (200)  ,
+	City VARCHAR (50)  ,
+	Postal_Code VARCHAR (10)  ,
+	Birth_Date DATETIME NULL ,
+	Id_Num VARCHAR (50)  ,
+	Phone1 VARCHAR (20)  ,
+	Phone2 VARCHAR (20)  ,
+	Phone3 VARCHAR (20)  ,
+	Notes VARCHAR (200)  ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (20)  ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edit DATETIME NULL,
+	Mtr_Year INTEGER,
+	Mtr_Rangka VARCHAR(50),
+	Mtr_Mesin VARCHAR(50),
+	CONSTRAINT P_PK PRIMARY KEY(Person_Id),
+	CONSTRAINT PERSON_MOTOR_FK FOREIGN KEY (Motor_Id) REFERENCES Motor(Motor_Id) 
+);
+
+
+CREATE TABLE Account (
+	Acc_Id AUTOINCREMENT NOT NULL ,
+	Acc_Type CHAR (1)  ,
+	Acc_Code VARCHAR (20)  ,
+	Acc_Name VARCHAR (150)  ,
+	Db_Cr_Type CHAR (1)  ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edt DATETIME NULL,
+	CONSTRAINT ACC_PK PRIMARY KEY (Acc_Id)
+);
+
+CREATE TABLE Shipment (
+	Ship_Id AUTOINCREMENT NOT NULL ,
+	Ship_Num VARCHAR (30)  ,
+	Ship_Type CHAR (1)  ,
+	Ship_Date DATETIME NOT NULL ,
+	Person_Id LONGINT NULL ,
+	Mekanik_Id LONGINT NULL ,
+	Notes VARCHAR (50)  ,
+	Subtotal MONEY NULL ,
+	Discount MONEY NULL ,
+	Ppn MONEY NULL ,
+	Total MONEY NULL ,
+	User_Insert VARCHAR (30)  ,
+	User_Edit VARCHAR (30)  ,
+	Date_Insert DATETIME NULL ,
+	Date_Edit DATETIME NULL,
+	Ship_Id_Used LONGINT,
+	Wh_Id INTEGER,
+	Wh_Id_Out INTEGER,
+	Expr_Date DATETIME,
+	Is_Post BOOLEAN,
+	Ship_Service_Type CHAR(1),
+	Down_Payment MONEY,
+	Tgl_Kirim DATE,
+	Tgl_Sampai DATE,
+	Delivery_Num VARCHAR(100),
+	CONSTRAINT SHIPMENT_PK PRIMARY KEY(Ship_Id),
+	CONSTRAINT SHIP_PERSON_FK FOREIGN KEY (Person_Id) REFERENCES Persons(Person_Id), 
+	CONSTRAINT SHIP_PERSON_FK FOREIGN KEY (Mekanik_Id) REFERENCES Persons(Person_Id),
+	CONSTRAINT SHIP_WH_FK FOREIGN KEY(Wh_Id) REFERENCES Warehouse(Wh_Id)
+);
+
+CREATE TABLE Service_Detail (
+	Service_Detail_Id AUTOINCREMENT NOT NULL ,
+	Ship_Id LONGINT NOT NULL ,
+	Service_Id INTEGER NOT NULL ,
+	Quantity REAL NULL ,
+	Price MONEY NULL ,
+	Amount MONEY NULL ,
+	Notes VARCHAR (200) ,
+	Charges MONEY NULL, 
+	Discount REAL,
+	Service_Parent INTEGER,
+	Is_Ksg BOOLEAN,
+	CONSTRAINT SERV_DETAIL_PK PRIMARY KEY(Service_Detail_Id),
+	CONSTRAINT SERV_SHIPMENT_FK FOREIGN KEY (Ship_Id) REFERENCES Shipment(Ship_Id), 
+	CONSTRAINT SERV_SERV_FK FOREIGN KEY (Service_Id) REFERENCES Services(Service_Id)	
+); 
+
+CREATE TABLE Item_Balance (
+	Item_Balance_Id AUTOINCREMENT NOT NULL ,
+	Item_Id LONGINT NOT NULL ,
+	Balance_Date DATETIME NOT NULL ,
+	Balance FLOAT NULL ,
+	Db_Balance FLOAT NULL ,
+	Cr_Balance FLOAT NULL ,
+	Price REAL NULL ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT IB_PK PRIMARY KEY(Item_Balance_Id),
+	CONSTRAINT I_BALANCE_FK FOREIGN KEY (Item_Id) REFERENCES Items(Item_Id)
+);
+
+CREATE TABLE Item_Detail (
+	Item_Detail_Id AUTOINCREMENT NOT NULL ,
+	Item_Balance_Id LONGINT NOT NULL ,
+	Quantity REAL NULL ,
+	Price MONEY NULL ,
+	Conversion REAL NULL ,
+	Amount MONEY NULL ,
+	Db_Cr_Type CHAR (1)  ,
+	Ship_Id LONGINT NOT NULL,
+	Discount REAL,
+	Service_Parent INTEGER,
+	Item_ID LONGINT,
+	Balance_In_Concerned VARCHAR,
+	Real_Value MONEY,
+	Is_Ksg BOOLEAN,
+	CONSTRAINT ID_PK PRIMARY KEY(Item_Detail_Id),
+	CONSTRAINT DETAIL_BALANCE_FK FOREIGN KEY (Item_Balance_Id) REFERENCES Item_Balance(Item_Balance_Id), 
+	CONSTRAINT DETAIL_SHIPMENT_FK FOREIGN KEY (Ship_Id) REFERENCES Shipment(Ship_Id),
+	CONSTRAINT DETAIL_SERV_SHIPMENT_FK FOREIGN KEY (Serv_Ship_Id) REFERENCES Services(Service_Id) 
+);
+
+CREATE TABLE Dummy_Item_Detail (
+	Dump_Id AUTOINCREMENT NOT NULL ,
+	Ship_Id LONGINT NOT NULL ,
+	Item_Id LONGINT NOT NULL ,
+	Service_Id INTEGER,
+	Service_Parent INTEGER,
+	Db_Cr_Type CHAR (1) ,
+	Quantity REAL NULL ,
+	Price MONEY NULL ,
+	Discount MONEY NULL ,
+	Amount MONEY NULL,
+	Is_Ksg BOOLEAN,
+	CONSTRAINT DID_PK PRIMARY KEY(Dump_Id),
+	CONSTRAINT DID_ITEM_FK FOREIGN KEY(Item_Id) REFERENCES Items(Item_Id),
+	CONSTRAINT DID_SERVICE_FK FOREIGN KEY(Service_Id) REFERENCES Services(Service_Id) 
+);
+
+
+CREATE TABLE Payment (
+	Payment_Id AUTOINCREMENT NOT NULL ,
+	Payment_Type CHAR (1)  NOT NULL ,
+	Payment_Date DATETIME NOT NULL ,
+	Payment_Num VARCHAR (30)  NOT NULL ,
+	Subtotal MONEY NULL ,
+	Discount MONEY NULL ,
+	Ppn MONEY NULL ,
+	Charges MONEY NULL ,
+	Total MONEY NULL ,
+	Notes VARCHAR (200)  NULL ,
+	User_Insert VARCHAR (30)  NULL ,
+	User_Edit VARCHAR (30)  NULL ,
+	Date_Insert DATETIME NOT NULL ,
+	Date_Edit DATETIME NULL,
+	CONSTRAINT PAYMENT_PK PRIMARY KEY(Payment_Id) 
+);
+
+CREATE TABLE Money_Account (
+	Money_Id INTEGER NOT NULL ,
+	Money_Code VARCHAR (10)  NOT NULL ,
+	Money_Name VARCHAR (50)  NULL ,
+	Money_Type CHAR (1)  NOT NULL ,
+	Money_Owner VARCHAR (50)  NULL ,
+	Acc_Num VARCHAR (50)  NULL ,
+	Bank_Name VARCHAR (50)  NULL ,
+	User_Id VARCHAR (20)  NOT NULL ,
+	Date_Modify DATETIME NOT NULL,
+	CONSTRAINT MA_PK PRIMARY KEY(Money_Id),
+	 
+);
+
+CREATE TABLE Money_Balance (
+	Money_Balance_Id AUTOINCREMENT NOT NULL ,
+	Money_Id INTEGER NOT NULL ,
+	Balance_Date DATETIME NOT NULL ,
+	Balance MONEY NULL ,
+	Db_Balance MONEY NULL ,
+	Cr_Balance MONEY NULL ,
+	Date_Modify DATETIME NULL,
+	CONSTRAINT MB_PK PRIMARY KEY(Money_Balance_Id),
+	CONSTRAINT MB_MA_FK FOREIGN KEY(Money_Id) REFERENCES Money_Account(Money_Id) 
+);
+
+CREATE TABLE Money_Transaction (
+	Money_Trans_Id AUTOINCREMENT NOT NULL ,
+	Payment_Id LONGINT NOT NULL ,
+	Money_Balance_Id INTEGER NOT NULL ,
+	Db_Cr_Type CHAR (1)  NOT NULL ,
+	Amount MONEY NULL ,
+	Notes VARCHAR (200)  NULL,
+	Acc_Id INTEGER,
+	CONSTRAINT MT_PK PRIMARY KEY(Money_Trans_Id),
+	CONSTRAINT MT_PAYMENT_FK FOREIGN KEY(Payment_Id) REFERENCES Payment(Payment_Id),
+	CONSTRAINT MT_MB_FK FOREIGN KEY(Money_Balance_Id) REFERENCES Money_Balance(Money_Balance_Id),
+        CONSTRAINT MT_AC_FK FOREIGN KEY(Acc_Id) REFERENCES Account(Acc_Id)  
+);
+
+
+

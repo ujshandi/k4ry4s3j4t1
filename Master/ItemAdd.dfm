@@ -1,0 +1,523 @@
+object frmItemAdd: TfrmItemAdd
+  Left = 276
+  Top = 237
+  BorderStyle = bsDialog
+  Caption = 'frmItemAdd'
+  ClientHeight = 260
+  ClientWidth = 454
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  DesignSize = (
+    454
+    260)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Bevel2: TBevel
+    Left = 0
+    Top = 11
+    Width = 437
+    Height = 206
+    Anchors = [akLeft, akTop, akRight]
+  end
+  object Kode: TLabel
+    Left = 17
+    Top = 33
+    Width = 25
+    Height = 13
+    Caption = 'Kode'
+  end
+  object TLabel
+    Left = 17
+    Top = 61
+    Width = 28
+    Height = 13
+    Caption = 'Nama'
+  end
+  object TLabel
+    Left = 17
+    Top = 161
+    Width = 55
+    Height = 13
+    Caption = 'Keterangan'
+  end
+  object TLabel
+    Left = 17
+    Top = 86
+    Width = 56
+    Height = 13
+    Caption = 'Satuan Jual'
+  end
+  object TLabel
+    Left = 17
+    Top = 113
+    Width = 46
+    Height = 13
+    Caption = 'Limit Stok'
+  end
+  object TLabel
+    Left = 265
+    Top = 86
+    Width = 54
+    Height = 13
+    Caption = 'Satuan Beli'
+  end
+  object TLabel
+    Left = 265
+    Top = 113
+    Width = 41
+    Height = 13
+    Caption = 'Konversi'
+  end
+  object Label1: TLabel
+    Left = 16
+    Top = 138
+    Width = 52
+    Height = 13
+    Caption = 'Kendaraan'
+  end
+  object txtKode: TAdvEdit
+    Left = 77
+    Top = 33
+    Width = 252
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etUppercase
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWindow
+    Enabled = True
+    HintShowLargeText = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 0
+    Text = 'ABCDEFGHIJKLMNOP'
+    Transparent = False
+    Visible = True
+  end
+  object txtNama: TAdvEdit
+    Left = 77
+    Top = 58
+    Width = 348
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etString
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWindow
+    Enabled = True
+    HintShowLargeText = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 1
+    Text = 'txtNama'
+    Transparent = False
+    Visible = True
+  end
+  object mmNotes: TMemo
+    Left = 77
+    Top = 162
+    Width = 213
+    Height = 45
+    Lines.Strings = (
+      'Memo1'
+      'Memo1'
+      'Memo1')
+    TabOrder = 7
+    WantReturns = False
+    OnKeyDown = mmNotesKeyDown
+  end
+  object btnSave: TButton
+    Left = 289
+    Top = 225
+    Width = 75
+    Height = 25
+    Anchors = [akRight, akBottom]
+    Caption = '&Save'
+    TabOrder = 8
+    OnClick = btnSaveClick
+  end
+  object btnBatal: TButton
+    Left = 369
+    Top = 225
+    Width = 75
+    Height = 25
+    Anchors = [akRight, akBottom]
+    Caption = '&Cancel'
+    TabOrder = 9
+    OnClick = btnBatalClick
+  end
+  object sttInfo: TStaticText
+    Left = 16
+    Top = 4
+    Width = 259
+    Height = 17
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    AutoSize = False
+    BorderStyle = sbsSingle
+    Caption = 'Master Item'
+    Color = 15658719
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentColor = False
+    ParentFont = False
+    TabOrder = 10
+  end
+  object txtSatuan: TAdvEdit
+    Left = 77
+    Top = 84
+    Width = 97
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etString
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWhite
+    Enabled = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    HintShowLargeText = False
+    ParentFont = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 2
+    Text = 'txtSatuan'
+    Transparent = False
+    Visible = True
+  end
+  object txtLimit: TAdvEdit
+    Left = 77
+    Top = 110
+    Width = 41
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etNumeric
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWhite
+    Enabled = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    HintShowLargeText = False
+    ParentFont = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 3
+    Text = '0'
+    Transparent = False
+    Visible = True
+  end
+  object chkEdit: TCheckBox
+    Left = 342
+    Top = 38
+    Width = 79
+    Height = 17
+    Caption = 'Edit Kode'
+    TabOrder = 11
+    Visible = False
+  end
+  object txtSatuanBeli: TAdvEdit
+    Left = 325
+    Top = 84
+    Width = 97
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etString
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWhite
+    Enabled = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    HintShowLargeText = False
+    ParentFont = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 4
+    Text = 'txtSatuan'
+    Transparent = False
+    Visible = True
+  end
+  object txtConversion: TAdvEdit
+    Left = 325
+    Top = 110
+    Width = 60
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etNumeric
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWhite
+    Enabled = True
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    HintShowLargeText = False
+    ParentFont = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 5
+    Text = '0'
+    Transparent = False
+    Visible = True
+  end
+  object txtKendaraan: TAdvEdit
+    Left = 77
+    Top = 136
+    Width = 308
+    Height = 21
+    AutoFocus = False
+    EditAlign = eaLeft
+    EditType = etString
+    ErrorColor = clRed
+    ErrorFontColor = clWhite
+    ExcelStyleDecimalSeparator = False
+    Flat = False
+    FlatLineColor = clBlack
+    FlatParentColor = True
+    FocusAlign = eaDefault
+    FocusBorder = False
+    FocusColor = clWindow
+    FocusFontColor = clWindowText
+    FocusLabel = False
+    FocusWidthInc = 0
+    ModifiedColor = clHighlight
+    DisabledColor = clSilver
+    URLColor = clBlue
+    ReturnIsTab = True
+    LengthLimit = 0
+    TabOnFullLength = False
+    Precision = 0
+    LabelPosition = lpLeftTop
+    LabelMargin = 4
+    LabelTransparent = False
+    LabelAlwaysEnabled = False
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Persistence.Enable = False
+    Persistence.Location = plInifile
+    Color = clWindow
+    Enabled = True
+    HintShowLargeText = False
+    OleDropTarget = False
+    OleDropSource = False
+    Signed = False
+    TabOrder = 6
+    Text = 'txtNama'
+    Transparent = False
+    Visible = True
+    OnKeyDown = txtKendaraanKeyDown
+  end
+  object Button1: TButton
+    Left = 388
+    Top = 136
+    Width = 35
+    Height = 21
+    Caption = '...'
+    TabOrder = 12
+    Visible = False
+  end
+end

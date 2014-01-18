@@ -1,0 +1,46 @@
+[26.05.06]
+- Buat Master Biaya
+- Buat Transaksi Pengeluaran Biaya
+- Field name bruto jadi subtotal
+- Kartu stok utk saldo awal bikin kolom disebelah qty masuk
+- satuan di tiap transaksi dihilangkan saja
+- indonesialisasi menu
+- kode part dibebasin saja (tidak otomatis) max.15 digit
+- pendapatan mekanik tampilkan detail transaksinya
+
+[20.06.06]
+- Tambah Field utk subtitusi, rangking di master item
+- field discount di service tidak mau diisi
+- total transaksi service/sales ngaco jika ada pendeletean grid baris transaksi 
+- setfocus component di transaksi
+- discount transaksi sales/service ada 2 macam yaitu utk total trans & detail trans
+- Posting transaksi dibkin tombol aja
+- autorefresh rekap transaksi
+
+[28.06.06]
+- jika harga part/service di transaksi nilainya 0, maka kolom price bisa diedit dan langsung
+  mengupdate master part/servicenya
+- default filter tanggal 3 hari
+- default inventory >> tidak menampilkan apa2
+- key_down utk service/part tambah numLock
+- Harga service tipe paket = otomatis dari jumlah harga service/part nya
+- Build update harga 
+- tambah filter kode, nama, hp utk rekap relasi
+- inventory tambah filter kode, nama part. Default radio group di tipe GLOBAL
+- Bikin tipe report Unit MOtor di Rekap SErvice
+- Report Inventory global tambah field h.jual
+- LOV Part tambah kolom price
+
+[04.07.06]
+- LOV customer hanya field kode & nama saja, jika filter kosong abaikan query
+- Harga utk sales & service bisa diedit (jika harga dimaster 0 maka update juga master part/servicenya jika tidak,
+  harga yg bersangkutan hanya tersimpan di detail transaksinya saja)
+- LOV service tambah shortcut utk nambah service tipe LAIN-LAIN
+- Rekap + Print-an urutan infonya diurutkan semuanya menjadi data service dulu, baru part
+- 
+
+[[05.07.06]
+- bedakan warna setfocus di grid
+- rekap service global tipe KSG error
+- filter tipe laporan di rekap trans sales/service pindah tempat
+- standarisasi grid behaviour

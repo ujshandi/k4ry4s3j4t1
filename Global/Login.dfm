@@ -1,0 +1,298 @@
+object frmLogin: TfrmLogin
+  Left = 644
+  Top = 450
+  BorderStyle = bsDialog
+  Caption = 'Log On to '
+  ClientHeight = 205
+  ClientWidth = 298
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  Icon.Data = {
+    0000010001002020000001000800A80800001600000028000000200000004000
+    0000010008000000000080040000000000000000000000010000000000000000
+    0000000080000080000000808000800000008000800080800000C0C0C000C0DC
+    C000F0CAA600CCFFFF0099FFFF0066FFFF0033FFFF00FFCCFF00CCCCFF0099CC
+    FF0066CCFF0033CCFF0000CCFF00FF99FF00CC99FF009999FF006699FF003399
+    FF000099FF00FF66FF00CC66FF009966FF006666FF003366FF000066FF00FF33
+    FF00CC33FF009933FF006633FF003333FF000033FF00CC00FF009900FF006600
+    FF003300FF00FFFFCC00CCFFCC0099FFCC0066FFCC0066FFCC0033FFCC0000FF
+    CC00FFCCCC00CCCCCC0099CCCC0066CCCC0033CCCC0000CCCC00FF99CC00CC99
+    CC009999CC006699CC003399CC000099CC00FF66CC00CC66CC009966CC006666
+    CC003366CC000066CC00FF33CC00CC33CC009933CC006633CC003333CC000033
+    CC00FF00CC00CC00CC009900CC006600CC003300CC000000CC00FFFF9900CCFF
+    990099FF990066FF990033FF990000FF9900FFCC9900CCCC990099CC990066CC
+    990033CC990000CC9900FF999900CC9999009999990066999900339999000099
+    9900FF669900CC66990099669900666699003366990000669900FF339900CC33
+    990099339900663399003333990000339900FF009900CC009900990099006600
+    99003300990000009900FFFF6600CCFF660099FF660066FF660033FF660000FF
+    6600FFCC6600CCCC660099CC660066CC660033CC660000CC6600FF996600CC99
+    660099996600669966003399660000996600FF666600CC666600996666006666
+    66003366660000666600FF336600CC3366009933660066336600333366000033
+    6600FF006600CC00660099006600660066003300660000006600FFFF3300CCFF
+    330099FF330066FF330033FF330000FF3300FFCC3300CCCC330099CC330066CC
+    330033CC330000CC3300FF993300CC9933009999330066993300339933000099
+    3300FF663300CC66330099663300666633003366330000663300FF333300CC33
+    330099333300663333003333330000333300FF003300CC003300990033006600
+    33003300330000003300CCFF000099FF000066FF000033FF0000FFCC0000CCCC
+    000099CC000066CC000033CC000000CC0000FF990000CC990000999900006699
+    00003399000000990000FF660000CC6600009966000066660000006600003366
+    0000FF330000CC33000099330000663300003333000000330000CC0000009900
+    000066000000330000000000DD000000BB000000AA0000008800000077000000
+    5500000044000000220000DD000000BB000000AA000000880000007700000055
+    00000044000000220000DDDDDD00555555007777770077777700444444002222
+    22001111110077000000550000004400000022000000F0FBFF00A4A0A0008080
+    80000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF000000
+    00000000000000000000EDACECECECECECECECECECECECECACACACED00000000
+    0000000000000000B2F0000000000000F1B2EFEFEFECECECECECECECEC000000
+    000000000000EDF10000EFECECECACEFB2F100B2000000000000000000000000
+    00000000F7F1000000B2F0F1F0F0B2EFACACEF00F00000000000000000000000
+    0000005D000000000000000000000000F1ECACACF00000000000000000000000
+    00005D000000000000000000000000000000ECACACF000000000000000000000
+    000000000000000000000000000000000000F1ACACACF0F10000000000000000
+    00F10000000000000000000000000000000000F0ACACEF00EF00000000000000
+    5D00000000000000000000000000000000000000ECACEF000000000000000000
+    F10000000000000000000000000000000000000000EFF00000EC000000000000
+    0000000000000000003A3A3A3AEF0000000000000000000000000000000000ED
+    00000000000000EFFBFBFB0A0A0A10EC000000000000000000000000000000EF
+    000000000000EF0AEF0000EF3A0A0A0AEC000000000000000000ED00000000B2
+    0000000000000A3A00B2ED00B23A0A0A0AEC0000000000000000EF00000000B2
+    00000000003A0AED0010FF3A003AFF0A0A3AEF00000000000000EF00000000B2
+    0000000000100AED00FFFF0700F7FF0A0A10EF00000000000000EF00000000EF
+    00000000F0FB0A1000ACEBEC00F6FFFFFF0AED00000000000000ED00000000ED
+    00000000F0FB0A0AAC0000000063FFFF0A0AED00000000000000000000000000
+    00000000F1100A0AFF6300B2EF003AFF0A10EC00000000000000000000000000
+    F00000B2003A0A0A0A070007FF003A0A0A10EC000000000000EF000000000000
+    5D00B2B200F0FB0A0A0A00ECF700EC0A0A5DEC00000000000000000000000000
+    00F1B2B2B2005DFB0A0A3A0000003A0A10EC000000000000EF00000000000000
+    000700B2865B005D10FB0A3AEC3A0A10EC000000000000F10000000000000000
+    00005D005BFF5B00F15D10FBFBFBF70000000000000000000000000000000000
+    0000005DF132FF00B20000000000000000000000000000000000000000000000
+    00000000F7F0863286B286B2B2B2B20000000000F00000000000000000000000
+    000000000000ACF1ECFF5B86B2B2B2000000F1ED000000000000000000000000
+    00000000000000005DEF00B2B2B2B2F1EFED0000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    0000000000000000000000000000000000000000000000000000000000000000
+    000000000000000000000000000000000000000000000000000000000000FFF0
+    0003FFC00001FF0003FFFC0001FFF80000FFF000007FF000003FE000001FC000
+    001FC000000FC000000F8000000F800000078000000780000007800000078000
+    00078000000FC000000FC000000FC000001FE000001FE000003FF000007FF800
+    00FFFC0001FFFF0003FFFFC00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Visible = True
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object pnlInput: TPanel
+    Left = 0
+    Top = 96
+    Width = 298
+    Height = 109
+    Align = alClient
+    BevelOuter = bvNone
+    Color = 136
+    TabOrder = 0
+    object lblCopyright: TLabel
+      Left = 12
+      Top = 75
+      Width = 74
+      Height = 24
+      Hint = '***** Contact us at *****'#13#10'Email: ourbrainmail@yahoo.com'
+      Caption = 'Copyright '#169' 2011'#13#10'In.Visi'
+      FocusControl = txtLoginID
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = 12
+      Font.Name = 'Arial'
+      Font.Style = []
+      ParentFont = False
+      ParentShowHint = False
+      ShowAccelChar = False
+      ShowHint = True
+    end
+    object lblPassword: TLabel
+      Left = 13
+      Top = 43
+      Width = 52
+      Height = 13
+      Caption = '&Password :'
+      FocusControl = txtLoginPwd
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object lblLogin: TLabel
+      Left = 13
+      Top = 19
+      Width = 59
+      Height = 13
+      Caption = '&User Name :'
+      FocusControl = txtLoginID
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      ParentFont = False
+    end
+    object txtLoginID: TAdvEdit
+      Left = 81
+      Top = 19
+      Width = 196
+      Height = 21
+      AutoFocus = False
+      EditAlign = eaLeft
+      EditType = etString
+      ErrorColor = clRed
+      ErrorFontColor = clWhite
+      ExcelStyleDecimalSeparator = False
+      Flat = False
+      FlatLineColor = clBlack
+      FlatParentColor = True
+      FocusAlign = eaDefault
+      FocusBorder = False
+      FocusColor = clWindow
+      FocusFontColor = clWindowText
+      FocusLabel = False
+      FocusWidthInc = 0
+      ModifiedColor = clHighlight
+      DisabledColor = clSilver
+      URLColor = clBlue
+      ReturnIsTab = True
+      LengthLimit = 10
+      TabOnFullLength = False
+      Precision = 0
+      LabelPosition = lpLeftTop
+      LabelMargin = 4
+      LabelTransparent = False
+      LabelAlwaysEnabled = False
+      LabelFont.Charset = DEFAULT_CHARSET
+      LabelFont.Color = clWindowText
+      LabelFont.Height = -11
+      LabelFont.Name = 'MS Sans Serif'
+      LabelFont.Style = []
+      Persistence.Enable = False
+      Persistence.Location = plInifile
+      Color = clWindow
+      Enabled = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      HintShowLargeText = False
+      ParentFont = False
+      OleDropTarget = False
+      OleDropSource = False
+      Signed = False
+      TabOrder = 0
+      Transparent = False
+      Visible = True
+    end
+    object txtLoginPwd: TAdvEdit
+      Left = 81
+      Top = 43
+      Width = 196
+      Height = 21
+      AutoFocus = False
+      EditAlign = eaLeft
+      EditType = etPassword
+      ErrorColor = clRed
+      ErrorFontColor = clWhite
+      ExcelStyleDecimalSeparator = False
+      Flat = False
+      FlatLineColor = clBlack
+      FlatParentColor = True
+      FocusAlign = eaDefault
+      FocusBorder = False
+      FocusColor = clWindow
+      FocusFontColor = clWindowText
+      FocusLabel = False
+      FocusWidthInc = 0
+      ModifiedColor = clHighlight
+      DisabledColor = clSilver
+      URLColor = clBlue
+      ReturnIsTab = True
+      LengthLimit = 10
+      TabOnFullLength = False
+      Precision = 0
+      LabelPosition = lpLeftTop
+      LabelMargin = 4
+      LabelTransparent = False
+      LabelAlwaysEnabled = False
+      LabelFont.Charset = DEFAULT_CHARSET
+      LabelFont.Color = clWindowText
+      LabelFont.Height = -11
+      LabelFont.Name = 'MS Sans Serif'
+      LabelFont.Style = []
+      Persistence.Enable = False
+      Persistence.Location = plInifile
+      CanUndo = False
+      Color = clWindow
+      Enabled = True
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = []
+      HintShowLargeText = False
+      ParentFont = False
+      PasswordChar = '*'
+      OleDropTarget = False
+      OleDropSource = False
+      Signed = False
+      TabOrder = 1
+      Transparent = False
+      Visible = True
+    end
+    object btnOk: TButton
+      Left = 121
+      Top = 71
+      Width = 75
+      Height = 25
+      Caption = '&Ok'
+      TabOrder = 2
+      OnClick = btnOKClick
+    end
+    object btnCancel: TButton
+      Left = 201
+      Top = 71
+      Width = 75
+      Height = 25
+      Caption = '&Cancel'
+      TabOrder = 3
+      OnClick = btnCancelClick
+    end
+  end
+  object pnlLogo: TPanel
+    Left = 0
+    Top = 0
+    Width = 298
+    Height = 96
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 1
+    object imgLogo: TImage
+      Left = 0
+      Top = 0
+      Width = 298
+      Height = 96
+      Align = alClient
+      Stretch = True
+      Transparent = True
+    end
+  end
+  object WinXP1: TWinXP
+    Left = 96
+    Top = 136
+  end
+end

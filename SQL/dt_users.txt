@@ -1,0 +1,7 @@
+"brain","brain",100,"realtime",
+"DJOKO","DJOKO",1,"123",
+"Hendry","Hendry",1,"",
+"heri","heri",5,"realtime",
+"IHSAN","IHSAN",4,"022481",
+"Meli","Meli",4,"",
+"Ujang","Ujang",1,"",
