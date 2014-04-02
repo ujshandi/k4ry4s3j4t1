@@ -22,7 +22,6 @@ type
     btnPrint: TButton;
     btnEdit: TButton;
     btnAdd: TButton;
-    btnOk: TButton;
     pnlFilter: TPanel;
     Label11: TLabel;
     Label6: TLabel;
@@ -50,6 +49,8 @@ type
     AdvEdit2: TAdvEdit;
     StaticText1: TStaticText;
     CheckBox1: TCheckBox;
+    btnOk: TButton;
+    Button1: TButton;
     procedure asgRekapGetAlignment(Sender: TObject; ARow, ACol: Integer;
       var HAlign: TAlignment; var VAlign: TVAlignment);
     procedure asgRekapDblClickCell(Sender: TObject; ARow, ACol: Integer);
@@ -75,6 +76,7 @@ type
     procedure pgcMainChange(Sender: TObject);
     procedure asgGudangGetAlignment(Sender: TObject; ARow, ACol: Integer;
       var HAlign: TAlignment; var VAlign: TVAlignment);
+    procedure Button1Click(Sender: TObject);
   private
     MasterPurpose : string;
     procedure InitPanel;
@@ -143,7 +145,7 @@ begin
   end;
   pgcMain.ActivePageIndex := TAB_MOTOR;
   Result := True;
-  pnlFilter.Height := 0;
+//chan 2014.02.04  pnlFilter.Height := 0;
   pnlFilterGudang.Height := 0;
   InitForm;
   pgcMainChange(Self);
@@ -194,6 +196,7 @@ begin
 //media Filter
   txtFilterKode.Clear;
   txtFilterNama.Clear;
+  cmbFilterType.Visible := false;
   cmbFilterType.ItemIndex:= 0;
 
   cmbFilterType.Text:= '';
@@ -211,6 +214,8 @@ begin
 
   MotorAr := TMotor_Arr.Create;
   //MotorAr.Filter.ServiceType := MasterPurpose;
+  MotorAr.Filter.MotorCode := txtFilterKode.Text;
+  MotorAr.Filter.MotorName := txtFilterNama.Text;
   MotorAr.FindOnDB;
   frmMainMenu.Gauge.Show;
   for i:= 0 to MotorAr.Count-1 do begin
@@ -360,9 +365,9 @@ end;
 
 procedure TfrmMotorKelola.HapusData1Click(Sender: TObject);
 begin
-  if Confirmed('Apakah Data Service '+asgRekap.Cells[colname,asgRekap.Row]+' akan dihapus') then
-    if not TServices.Hapus(asgRekap.Ints[colSeq,asgRekap.row]) then
-      Inform('Data service ini sudah ada pada transaksi, sehingga tidak bisa dihapus');
+  if Confirmed('Apakah Data kendaraan '+asgRekap.Cells[colname,asgRekap.Row]+' akan dihapus') then
+    if not TMotor.Hapus(asgRekap.Ints[colSeq,asgRekap.row]) then
+      Inform('Data motor ini sudah ada pada transaksi, sehingga tidak bisa dihapus');
 end;
 
 procedure TfrmMotorKelola.asgRekapRightClickCell(Sender: TObject; ARow,
@@ -450,6 +455,12 @@ begin
    HAlign := taCenter
  else if ACol in [colgStatus] then
    HAlign := taCenter;
+end;
+
+procedure TfrmMotorKelola.Button1Click(Sender: TObject);
+begin
+txtFilterKode.Clear;
+txtFilterNama.Clear;
 end;
 
 end.

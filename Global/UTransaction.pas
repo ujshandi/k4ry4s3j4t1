@@ -1943,7 +1943,7 @@ begin
   vFilter := '';
   SQL := 'SELECT d.item_detail_id, d.item_balance_id, d.quantity, d.price, d.amount,d.db_cr_type, d.ship_id '+
     {7}    ' ,i.item_code, i.item_name, i.used_unit, d.conversion,i.purchase_unit,i.item_type '+
-        ' ,d.discount, b.item_id, d.service_parent, d.is_ksg,d.stok '+
+        ' ,d.discount, b.item_id, d.service_parent, d.is_ksg,d.stok,i.car_id '+
         ' FROM item_detail d, item_balance b, items i '+
         ' WHERE d.item_balance_id = b.item_balance_id AND b.item_id = i.item_id ';
   if AShipSeq <> 0 then
@@ -1951,7 +1951,7 @@ begin
 
   if vFilter <> '' then
     SQL := SQL + vFilter;
-  buffer := MyConnection.OpenSQL(SQL+' Order By i.item_code');
+  buffer := MyConnection.OpenSQL(SQL+' Order By d.item_detail_id');
   Result := (buffer.recordcount<>0);
   if Result then
     for i := 0 to buffer.RecordCount-1 do
@@ -1969,6 +1969,7 @@ begin
       FItemDetail_Arr[idx].ItemBalance.Items.ItemType := BufferToString(Fields[12].Value);
       FItemDetail_Arr[idx].ItemBalance.Items.ItemId   := BufferToInteger(Fields[14].Value);
       FItemDetail_Arr[idx].Stok := BufferToFloat(Fields[17].Value);
+      FItemDetail_Arr[idx].ItemBalance.Items.CarId   := BufferToInteger(Fields[18].Value);
       moveNext;
     end;
   buffer.close;

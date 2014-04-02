@@ -302,6 +302,7 @@ begin
     with asgTerima do begin
       Cells[colCode,i+1] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemCode;
       Cells[colName,i+1] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemName;
+      Cells[colKendaraan,i+1] := TMotor.getName(vShipment.ItemDetailArr[i].ItemBalance.Items.CarId);
       Cells[colSatuan,i+1] := vShipment.ItemDetailArr[i].ItemBalance.Items.UsedUnit;
       Floats[colQty,i+1] := vShipment.ItemDetailArr[i].Quantity / IfThen(vShipment.ItemDetailArr[i].Conversion=0,1,vShipment.ItemDetailArr[i].Conversion);
       Floats[colPrice,i+1]:= vShipment.ItemDetailArr[i].Price;// * IfThen(vShipment.ItemDetailArr[i].Conversion=0,1,vShipment.ItemDetailArr[i].Conversion);

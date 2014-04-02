@@ -61,7 +61,8 @@ begin
     Memo1.Lines.Add('No version information found');
 
 //  ProductName.Caption := //Application.Name;
-  Version.Caption := 'Version 16.10.12';
+//  Version.Caption := 'Version 16.10.12';
+  Version.Caption := 'Version 02.04.14';
   if (FileExists('Skin\about1.jpg')) then
     Image1.Picture.LoadFromFile('Skin\about1.jpg');
 end;
@@ -70,6 +71,9 @@ procedure TfrmAbout.SpeedButton1Click(Sender: TObject);
 var str : string;
 begin
   str :=
+        '02.04.14'+#13 +
+        '- Tambah kolom satuan di service '+#13+
+        '- Tambah pencarian di data kendaraan '+#13+
         '16.10.12'+#13 +
         '- Data Estimasi tidak bisa di delete '+#13+
         '- Data Estimasi tidak bisa di edit '+#13+

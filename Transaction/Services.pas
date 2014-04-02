@@ -231,15 +231,16 @@ const
   colType = 3;
   colName = 4;
   colQty = 5;
-  colPrice = 6;
-  colBruto = 7;
-  colDiscPct = 8;
-  colDisc = 9;
-  colNett =10;
-  colID = 11;
-  colParttype = 12;
-  colParent = 13;
-  colQtyOld = 14;
+  colSatuan = 6; //20140402
+  colPrice = 7;
+  colBruto = 8;
+  colDiscPct = 9;
+  colDisc = 10;
+  colNett =11;
+  colID = 12;
+  colParttype = 13;
+  colParent = 14;
+  colQtyOld = 15;
 
   TAB_REG = 0;
   TAB_KSG = 1;
@@ -280,7 +281,7 @@ begin
     AutoNumberCol(colNo);
 
   end;
-  
+
   if GlobalSystemUser.AccessLevel > LEVEL_OWNER then exit;
 
   with asgRegPart do begin
@@ -312,17 +313,20 @@ begin
     ColWidths[colKsg] :=0;
     ColWidths[colPartType]:=0;
     ColWidths[colParent] := 0;
+    ColWidths[colSatuan] := 0;
   end;
   with asgKSGService do begin
     ColWidths[colID]:=0;
     ColWidths[colPartType]:=0;
     ColWidths[colParent] := 0;
+    ColWidths[colSatuan] := 0;
   end;
   with asgCompanyService do begin
     ColWidths[colID]:=0;
     ColWidths[colKsg] :=0;
     ColWidths[colPartType]:=0;
     ColWidths[colParent] := 0;
+    ColWidths[colSatuan] := 0;
   end;
 end;
 
@@ -414,7 +418,7 @@ end;
 procedure TfrmServices.InitGrid;
 begin
   
-  ResetGrid(asgRegPart,3,16,1,1);
+  ResetGrid(asgRegPart,3,17,1,1);
   with asgRegPart do begin
     FloatingFooter.Visible := True;
     Cells[colNo,0]  := 'No.';
@@ -422,6 +426,7 @@ begin
     Cells[colName,0]:= 'Deskripsi';
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -434,7 +439,7 @@ begin
         ColWidths[colCode]  := 140;
   end;
   asgKSGPart.Clear;
-  ResetGrid(asgKSGPart,3,16,1,1);
+  ResetGrid(asgKSGPart,3,17,1,1);
   with asgKSGPart do begin
     FloatingFooter.Visible := True;
     AddCheckBox(colKsg,1,False,False);
@@ -444,6 +449,7 @@ begin
     Cells[colName,0]:= 'Deskripsi';
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -455,7 +461,7 @@ begin
     Cells[colQtyOld,0] := 'QtyOld';
         ColWidths[colCode]  := 140;
   end;
-  ResetGrid(asgCompanyPart,3,16,1,1);
+  ResetGrid(asgCompanyPart,3,17,1,1);
   with asgCompanyPart do begin
     FloatingFooter.Visible := True;
     Cells[colNo,0]  := 'No.';
@@ -463,6 +469,7 @@ begin
     Cells[colName,0]:= 'Deskripsi';
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -475,7 +482,7 @@ begin
         ColWidths[colCode]  := 140;
   end;
 
-  ResetGrid(asgRegService,3,15,1,1);
+  ResetGrid(asgRegService,3,16,1,1);
 
   with asgRegService do begin
     FloatingFooter.Visible := True;
@@ -485,6 +492,7 @@ begin
 
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -494,7 +502,7 @@ begin
     Cells[colParent,0] := 'Parent';
     Cells[colParttype,0] := 'PartType';
   end;
-  ResetGrid(asgKSGService,3,15,1,1);
+  ResetGrid(asgKSGService,3,16,1,1);
   asgKSGService.Clear;
   with asgKSGService do begin
     FloatingFooter.Visible := True;
@@ -505,6 +513,7 @@ begin
     Cells[colName,0]:= 'Deskripsi';
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -514,7 +523,7 @@ begin
     Cells[colParent,0] := 'Parent';
     Cells[colParttype,0] := 'PartType';
   end;
-  ResetGrid(asgCompanyService,3,15,1,1);
+  ResetGrid(asgCompanyService,3,16,1,1);
   with asgCompanyService do begin
     FloatingFooter.Visible := True;
     Cells[colNo,0]  := 'No.';
@@ -522,6 +531,7 @@ begin
     Cells[colName,0]:= 'Deskripsi';
     Cells[colType,0]:= 'Jenis';
     Cells[colQty,0] := 'Qty';
+    Cells[colSatuan,0] := 'Satuan';
     Cells[colPrice,0] := 'Harga';
     Cells[colBruto,0] := 'Subtotal';
     Cells[colDiscPct,0] := 'Disc(%)';
@@ -789,6 +799,7 @@ begin
          end;
         Cells[colCode,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemCode;
         Cells[colName,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemName;
+        Cells[colSatuan,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.UsedUnit;
         Cells[colType,vRow] := TItems.getDesc(vShipment.ItemDetailArr[i].ItemBalance.Items.ItemType);
         Floats[colQty,vRow] := vShipment.ItemDetailArr[i].Quantity;// / IfThen(vDetail[i].Conversion=0,1,vDetail[i].Conversion);
         Floats[colPrice,vRow]:= vShipment.ItemDetailArr[i].Price;// * IfThen(vDetail[i].Conversion=0,1,vDetail[i].Conversion);
@@ -837,6 +848,7 @@ begin
              end;
              Cells[colCode,vRow] := Items.ItemCode;
              Cells[colName,vRow] := Items.ItemName;
+             Cells[colSatuan,vRow] := Items.UsedUnit;
              Cells[colType,vRow] := TItems.getDesc(Items.ItemType);
              Floats[colQty,vRow] := Quantity;
              Floats[colQtyOld,vRow] := Quantity;
@@ -1593,6 +1605,7 @@ begin
          Cells[colCode,ARow] := vItem.ItemCode;
          Cells[colName,ARow] := vItem.ItemName;
          Floats[colQty,ARow] := 1;
+         Cells[colSatuan,ARow] := vItem.UsedUnit;
          Ints[colId,ARow]:= vItem.ItemId;
          Cells[colType,ARow] := TItems.getDesc(vItem.ItemType);
          Floats[colPrice,ARow] := vItem.Price;
@@ -1655,6 +1668,7 @@ begin
                 Cells[colName,vRow] := vPkgArr[i].Items.ItemName;
                 Cells[colType,vRow]:= TItems.getDesc(vPkgArr[i].Items.ItemType);
                 Floats[colqty,vRow] := vPkgArr[i].Quantity;
+
                 Floats[colPrice,vRow] := vPkgArr[i].Price;
                 Ints[colId,vRow] := vPkgArr[i].Items.ItemId;
                 AddCheckBox(colKsg,vRow,False,False);
@@ -2203,6 +2217,7 @@ begin
         
         Cells[colCode,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemCode;
         Cells[colName,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.ItemName;
+        Cells[colSatuan,vRow] := vShipment.ItemDetailArr[i].ItemBalance.Items.UsedUnit;
         Cells[colType,vRow] := TItems.getDesc(vShipment.ItemDetailArr[i].ItemBalance.Items.ItemType);
         Floats[colQty,vRow] := vShipment.ItemDetailArr[i].Quantity;// / IfThen(vDetail[i].Conversion=0,1,vDetail[i].Conversion);
         Floats[colPrice,vRow]:= vShipment.ItemDetailArr[i].Price;// * IfThen(vDetail[i].Conversion=0,1,vDetail[i].Conversion);

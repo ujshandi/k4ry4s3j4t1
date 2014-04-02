@@ -237,6 +237,7 @@ type
     class function getNewNumber(AMotorType:string):string;
     class function getName(AMotorId:integer):string;
     class function Hapus(AMotorId:integer): boolean;
+    class function getRefIntegrity(AMotorId:integer): string;
     class procedure getListType(AList:TStringList;ATarget:TStrings;AWithAll:boolean=False);
   end;
 
@@ -1964,7 +1965,7 @@ end;
 
 constructor TMotor_Arr.Create;
 begin
-
+  FFilter := TMotor.Create(Self);
 end;
 
 destructor TMotor_Arr.Destroy;
@@ -1979,6 +1980,10 @@ var SQL, vFilter : string;
     i:integer;
 begin
   vFilter := '';
+  if (FFilter.MotorCode <> '') then
+      vFilter := vFilter + ' and UPPER(motor_code) LIKE '+FormatSQLWildCard(UpperCase(FFilter.MotorCode+'%'));
+  if (FFilter.MotorName <> '') then
+      vFilter := vFilter + ' and UPPER(motor_name) LIKE '+FormatSQLWildCard(UpperCase(FFilter.MotorName+'%'));
   if CheckWithService then begin
     SQL := 'SELECT distincT m.motor_id, m.motor_type,m.motor_code, m.motor_name,motor_year,m.user_insert,m.user_edit '+
           ' FROM motor m, persons p, shipment s '+
@@ -2036,9 +2041,55 @@ begin
    Result := getNextIDNum('motor_code','motor',' AND motor_type ='+FormatSQLString(AMotorType),AMotorType);
 end;
 
-class function TMotor.Hapus(AMotorId: integer): boolean;
+class function TMotor.getRefIntegrity(AMotorId: integer): string;
+var SQL: string;
+    buffer : _recordset;
+    i:integer;
 begin
+  SQL := 'SELECT person_name '+
+          ' FROM persons '+
+          ' WHERE motor_id = '+FormatSQLNumber(AMotorId)+
+          ' UNION '+
+          'SELECT person_name '+
+          ' FROM persons s, persons_car d '+
+          ' WHERE s.person_id = d.person_id '+
+          ' AND d.motor_id = '+FormatSQLNumber(AMotorId);
+
+  buffer := MyConnection.OpenSQL(SQL);
+  Result := '';
+  for i := 0 to buffer.RecordCount-1 do
+    with buffer do begin
+      Result := Result + BufferToString(Fields[0].Value)+ #13;
+      moveNext;
+    end;
+  buffer.close;
+
+end;
+
+class function TMotor.Hapus(AMotorId: integer): boolean;
+var //sqL: string;
+   vStr : string;
+begin
+  vStr := getRefIntegrity(AMotorId);
   Result := False;
+  if vStr <> '' then begin
+    Alert('Data tidak bisa dihapus karena sudah digunakan oleh :'+#13+
+          vStr);
+    exit;
+  end;
+
+  try
+    MyConnection.BeginSQL;
+    MyConnection.ExecSQL('DELETE FROM motor WHERE motor_id ='+FormatSQLNumber(AMotorId));
+
+    MyConnection.EndSQL;
+    Result := True;
+  except
+    Result := False;
+    MyConnection.UndoSQL;
+  end;
+
+
 end;
 
 function TMotor.InsertOnDb: boolean;

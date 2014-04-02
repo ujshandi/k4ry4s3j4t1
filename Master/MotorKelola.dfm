@@ -48,9 +48,9 @@ object frmMotorKelola: TfrmMotorKelola
         ImageIndex = 15
         object Panel1: TPanel
           Left = 0
-          Top = 128
+          Top = 101
           Width = 697
-          Height = 260
+          Height = 287
           Align = alClient
           BevelOuter = bvNone
           Caption = 'Panel1'
@@ -58,12 +58,12 @@ object frmMotorKelola: TfrmMotorKelola
           TabOrder = 0
           DesignSize = (
             697
-            260)
+            287)
           object asgRekap: TAdvStringGrid
             Left = 9
             Top = 40
             Width = 682
-            Height = 183
+            Height = 210
             Cursor = crDefault
             Anchors = [akLeft, akTop, akRight, akBottom]
             ColCount = 8
@@ -212,7 +212,7 @@ object frmMotorKelola: TfrmMotorKelola
             URLShow = False
             URLFull = False
             URLEdit = False
-            ScrollType = ssFlat
+            ScrollType = ssNormal
             ScrollColor = clNone
             ScrollWidth = 17
             ScrollSynch = False
@@ -258,7 +258,7 @@ object frmMotorKelola: TfrmMotorKelola
           end
           object btnPrint: TButton
             Left = 616
-            Top = 229
+            Top = 256
             Width = 75
             Height = 25
             Anchors = [akRight, akBottom]
@@ -284,34 +284,25 @@ object frmMotorKelola: TfrmMotorKelola
             TabOrder = 3
             OnClick = btnAddClick
           end
-          object btnOk: TButton
-            Left = 175
-            Top = 6
-            Width = 75
-            Height = 25
-            Caption = '&Refresh'
-            TabOrder = 4
-            OnClick = btnOkClick
-          end
         end
         object pnlFilter: TPanel
           Left = 0
           Top = 0
           Width = 697
-          Height = 128
+          Height = 101
           Align = alTop
           BevelOuter = bvNone
-          Caption = 'pnlFilter'
           TabOrder = 1
           DesignSize = (
             697
-            128)
+            101)
           object Label11: TLabel
-            Left = 8
-            Top = 88
+            Left = 200
+            Top = 48
             Width = 24
             Height = 13
             Caption = 'Jenis'
+            Visible = False
           end
           object Label6: TLabel
             Left = 8
@@ -328,8 +319,8 @@ object frmMotorKelola: TfrmMotorKelola
             Caption = 'Kode'
           end
           object cmbFilterType: TComboBox
-            Left = 72
-            Top = 88
+            Left = 264
+            Top = 48
             Width = 138
             Height = 21
             ItemHeight = 13
@@ -342,7 +333,7 @@ object frmMotorKelola: TfrmMotorKelola
           end
           object btnReset: TButton
             Left = 453
-            Top = -190
+            Top = -217
             Width = 75
             Height = 25
             Anchors = [akRight, akBottom]
@@ -352,7 +343,7 @@ object frmMotorKelola: TfrmMotorKelola
           end
           object btnLoad: TButton
             Left = 361
-            Top = -190
+            Top = -217
             Width = 90
             Height = 25
             Anchors = [akRight, akBottom]
@@ -475,6 +466,24 @@ object frmMotorKelola: TfrmMotorKelola
             ParentColor = False
             ParentFont = False
             TabOrder = 5
+          end
+          object btnOk: TButton
+            Left = 225
+            Top = 63
+            Width = 75
+            Height = 25
+            Caption = '&Cari'
+            TabOrder = 6
+            OnClick = btnOkClick
+          end
+          object Button1: TButton
+            Left = 304
+            Top = 63
+            Width = 75
+            Height = 25
+            Caption = 'Reset'
+            TabOrder = 7
+            OnClick = Button1Click
           end
         end
       end
